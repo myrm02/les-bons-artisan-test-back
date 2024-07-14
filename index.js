@@ -13,6 +13,25 @@ app.use(express.urlencoded({ extended: true }))
 const uri = "mongodb+srv://admin:<password$>@bonsartisans.lzxj5k5.mongodb.net/?retryWrites=true&w=majority&appName=BonsArtisans";
 const clientOptions = { serverApi: { version: '1', strict: true, deprecationErrors: true } };
 
+app.get('/', (req, res) => {
+
+  async function run() {
+    try {
+      // Create a Mongoose client with a MongoClientOptions object to set the Stable API version
+      await mongoose.connect(uri, clientOptions);
+      await mongoose.connection.db.admin().command({ ping: 1 });
+      console.log("Pinged your deployment. You successfully connected to MongoDB!");
+    } finally {
+      // Ensures that the client will close when you finish/error
+      await mongoose.disconnect();
+    }
+  }
+  run().catch(console.dir);
+
+  res.send("Succesfully connected to the remote database")
+
+})
+
 app.get('/products', async (req, res) => {
 
   try {
