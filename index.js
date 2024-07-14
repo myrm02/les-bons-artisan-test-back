@@ -10,7 +10,7 @@ app.use(cors());
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-const uri = "mongodb+srv://admin:password$@bonsartisans.lzxj5k5.mongodb.net/?retryWrites=true&w=majority&appName=BonsArtisans";
+const uri = "mongodb+srv://admin:<password$>@bonsartisans.lzxj5k5.mongodb.net/?retryWrites=true&w=majority&appName=BonsArtisans";
 const clientOptions = { serverApi: { version: '1', strict: true, deprecationErrors: true } };
 
 app.get('/products', async (req, res) => {
