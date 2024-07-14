@@ -10,11 +10,15 @@ app.use(cors());
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
+const uri = "mongodb+srv://admin:<password>@bonsartisans.lzxj5k5.mongodb.net/?retryWrites=true&w=majority&appName=BonsArtisans";
+const clientOptions = { serverApi: { version: '1', strict: true, deprecationErrors: true } };
+
 app.get('/products', async (req, res) => {
 
   try {
 
-    await mongoose.connect('mongodb://localhost:27017/bons-artisans');
+    await mongoose.connect(uri, clientOptions);
+    await mongoose.connection.db.admin().command({ ping: 1 });
     
     console.log("Database connection is setup!")
     
@@ -36,7 +40,8 @@ app.post('/products', async (req, res) => {
 
   try {
 
-    await mongoose.connect('mongodb://localhost:27017/bons-artisans');
+    await mongoose.connect(uri, clientOptions);
+    await mongoose.connection.db.admin().command({ ping: 1 });
   
     console.log("Database connection is setup!")
 
@@ -64,7 +69,8 @@ app.post('/products', async (req, res) => {
 app.put('/products/:id', async (req, res) => {
   
   try {
-    await mongoose.connect('mongodb://localhost:27017/bons-artisans');
+    await mongoose.connect(uri, clientOptions);
+    await mongoose.connection.db.admin().command({ ping: 1 });
   
     console.log("Database connection is setup!")
 
@@ -92,7 +98,8 @@ app.delete('/products/:id', async (req, res) => {
   
   try {
 
-    await mongoose.connect('mongodb://localhost:27017/bons-artisans');
+    await mongoose.connect(uri, clientOptions);
+    await mongoose.connection.db.admin().command({ ping: 1 });
   
     console.log("Database connection is setup!")
 
