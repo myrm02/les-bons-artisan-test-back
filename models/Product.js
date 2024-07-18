@@ -3,12 +3,12 @@ const { Schema } = mongoose;
 
 const productSchema = new Schema({
     _id: Number,
-    name : { type: String, required: true } , 
-    type : { type: String, required: true } , 
-    price : { type: Number, required: true }, 
+    name : String, 
+    type : String, 
+    price : Number, 
     rating : Number,
     warranty_years : Number, 
-    available : { type: Boolean, required: true } 
+    available : Boolean
 });
 
 const Product = mongoose.model('Product', productSchema)
